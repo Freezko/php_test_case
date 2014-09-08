@@ -1,26 +1,34 @@
-Тестовое задание на позицию middle PHP developer
-=============
+Тестовое задание
+================================
+
+REQUIREMENTS
+------------
+
+PHP 5.4.0.
 
 
-Реализовать приложение **гостевая книга**.
-  1. Отображение списка сообщений на странице
-  2. Форма добавления нового сообщения
-    * Поля для заполнения
-      1. User Name (цифры и буквы латинского алфавита) – обязательное поле
-      2. E-mail (формат email) – не обязательное поле
-      3. Text (непосредственно сам текст сообщения, HTML тэги недопустимы) – обязательное поле
+INSTALLATION
+------------
 
-##Требования
-  1. Фреймворк Laravel 4 или YII (на самом деле любой современный фреймворк подойдет)
-  2. Сообщения должны разбиваться на страницы по 5 сообщений на каждой.
-  3. Валидация формы с выводом ошибок.
-  
-##Будет плюсом
-  1. Использование миграций
-  2. Добавление CAPTCHA на страницу отправки сообщения
-  3. Форма для отправки сделана через AJAX
-  4. Для оформления использован Bootstrap
-  5. Реализовать javascript на AngularJS (single-page application) 
+1)Создать базу *guestbook*
 
-##Ответ
-Ответ нужно прислать через pull request в данный репозиторий.
+2)Настроить *config/db.php*
+
+3)Запустить миграцию *yii migrate*
+
+
+
+DIRECTORY STRUCTURE
+-------------------
+
+      assets/             contains assets definition
+      commands/           contains console commands (controllers)
+      config/             contains application configurations
+      controllers/        contains Web controller classes
+      models/             contains model classes
+      runtime/            contains files generated during runtime           
+      vendor/             contains dependent 3rd-party packages
+      views/              contains view files for the Web application
+      web/                contains the entry script and Web resources
+      migrations/         contains db migrations
+
