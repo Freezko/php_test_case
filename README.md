@@ -20,7 +20,7 @@
   2. Добавление CAPTCHA на страницу отправки сообщения
   3. Форма для отправки сделана через AJAX
   4. Для оформления использован Bootstrap
-  5. Реализовать javascript на AngularJS (single-page application) 
+  5. Реализовать javascript на AngularJS или ReactJS (single-page application) 
 
 ##Ответ
 Ответ нужно прислать через pull request в данный репозиторий.
