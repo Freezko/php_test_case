@@ -1,30 +1,27 @@
-Тестовое задание на позицию PHP developer
-=============
+# Laravel PHP Framework
 
+[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
+[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
+[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
+[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
 
-Реализовать приложение **гостевая книга**.
-  1. Отображение списка сообщений на странице
-  2. Форма добавления нового сообщения
-    * Поля для заполнения
-      1. User Name (цифры и буквы латинского алфавита) – обязательное поле
-      2. E-mail (формат email) – не обязательное поле
-      3. Text (непосредственно сам текст сообщения, HTML тэги недопустимы) – обязательное поле
-  3. Клик на User Name сообщения выводит список сообщений данного пользователя.
+Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
 
-##Требования
-  1. Фреймворк Laravel 5 или Laravel 4 (на самом деле любой современный фреймворк подойдет, но Laravel предпочтительнее)
-  2. Логика должна быть разбита на Backend и Frontend.
-  3. Backend используется в качестве Api 
-  4. Frontend на любом современном JS фреймворке (Angular, React, Vue и тп.)
-  5. Валидация формы с выводом ошибок.
-  6. Использование миграций
-  
-##Не обязательно но будет плюсом
-  1. PHPUnit тесты для Backend
-  2. Авторизация и регистрация
-  3. Личный кабинет после авторизации в котором выводятся сообщения пользователя.
-  4. Сообщения должны разбиваться на страницы с выбором колличества сообщений на каждой (5 на странице или 10 на странице)
+Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
 
-##Ответ
-  Коммиты стараться делать логически осмысленными, разбивая функционал на части. Сообщения коммита должны описывать что было сделано.  
-  Ответ нужно прислать через pull request в данный репозиторий.
+## Official Documentation
+
+Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+
+## Contributing
+
+Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+
+## Security Vulnerabilities
+
+If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+
+## License
+
+The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
