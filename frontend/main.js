@@ -1,4 +1,4 @@
-//import './reset';
+import './reset';
 
 //App Dependecies
 import VueRouter from 'vue-router';
@@ -15,11 +15,10 @@ let root = Vue.extend(rootElement);
 import routerMap from './router-map';
 
 let router = new VueRouter({
-    history: false
+    history: true
 })
 
 .map(routerMap)
     .start(root, '#application', () => {
-
-        alert('погнали')
+        console.log('Роутер активен');
     });

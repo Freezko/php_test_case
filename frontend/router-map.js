@@ -1,8 +1,11 @@
 export default {
-
 	'/': {
 		name: 'home',
 		component: require('./project/home')
+	},
+	'/profile': {
+		name: 'profile',
+		component: require('./project/profile')
 	},
 	'/signup':{
 		name: 'signup',
@@ -11,10 +14,5 @@ export default {
 	'/signin': {
 		name: 'signin',
 		component: require('./project/signin')
-	},
-	'/profile': {
-		name: 'profile',
-		require: require('./project/profile')
 	}
-
 }
