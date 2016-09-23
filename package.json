@@ -1,0 +1,31 @@
+{
+  "name": "php-case",
+  "version": "1.0.0",
+  "description": "test-case",
+  "main": "webpack.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "SET NODE_ENV=production && webpack",
+    "start": "webpack-dev-server --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riffca/php_test_case.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/riffca/php_test_case/issues"
+  },
+  "homepage": "https://github.com/riffca/php_test_case#readme",
+  "devDependencies": {
+    "babel-loader": "^6.2.5",
+    "node-sass": "^3.10.0",
+    "sass-loader": "^4.0.2",
+    "vue-loader": "^8.5.2"
+  }
+}
