@@ -4,7 +4,7 @@ export default {
 		name: 'home',
 		component: require('./project/home')
 	},
-	'/signup'{
+	'/signup':{
 		name: 'signup',
 		component: require('./project/signup')
 	},

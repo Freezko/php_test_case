@@ -19,7 +19,7 @@ let router = new VueRouter({
 })
 
 .map(routerMap)
-    .start(root, '#root', () => {
+    .start(root, '#application', () => {
 
         alert('погнали')
     });

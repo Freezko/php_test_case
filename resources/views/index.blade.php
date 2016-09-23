@@ -5,7 +5,7 @@
     <title>php-case</title>
 </head>
 <body>
-    <div class="application"></div>
+    <div id="application"></div>
     <script src="/main.js"></script>
 </body>
 </html>
