@@ -1,4 +1,4 @@
-import './view/style.scss';
+/*import './view/style.scss';
 
 //App Dependecies
 import VueRouter from 'vue-router';
@@ -29,4 +29,7 @@ let router = new VueRouter({
             console.log(`${data} загрузок!`);
         });
 
-    });
+    });*/
+
+
+ alert(123);

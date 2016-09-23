@@ -6,7 +6,7 @@ var BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 var NODE_ENV = process.env.NODE_ENV || 'development';
 
 var publicPath = path.join(__dirname, 'public');
-var frontend = path.join(__dirname, 'frontend');]
+var frontend = path.join(__dirname, 'frontend');
 
 
 module.exports = {
@@ -40,10 +40,8 @@ module.exports = {
                 test: /\.scss$/,
                 loader: NODE_ENV === 'development' ? 'style!css!sass?sourceMap' : 'style!css!sass'
 
-            }, {
-                test: /\.html$/,
-                loader: 'raw-loader'
-            }, {
+            }, 
+            {
                 test: /\.vue$/,
                 loader: 'vue'
             }
@@ -61,23 +59,14 @@ module.exports = {
     },
     plugins: [
         new webpack.ProvidePlugin({
-            //$: 'jquery',
             Vue: 'vue',
         }),
-/*        new BrowserSyncPlugin({
-            // use existing Apache virtual host
-            proxy: 'http://wedding.local/',
+        new BrowserSyncPlugin({
+            proxy: 'http://php-case.local/',
             //tunnel: true,
-            // watch the built files and the index file
-            files: ['./php/public/index.php', './php/public/app.js']
-        })*/
-    ],
-    devServer: {
-        contentBase: public,
-        proxy: {
-            '*': 'http://php-case.local'
-        }
-    }
+            files: ['./public/main.js']
+        })
+    ]
 };
 
 
@@ -94,15 +83,3 @@ if (NODE_ENV != 'development') {
     );
 }
 
-
-
-/*if (php && NODE_ENV === 'development') {
-
-    // needed to make request-promise work
-    module.exports.node = {
-        net: 'empty',
-        tls: 'empty'
-    };
-
-}
-*/
