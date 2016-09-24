@@ -44,7 +44,8 @@ export default {
 .navigation {
   position: fixed;
   text-align: right;
-  width: 100%;
+  margin-right: 100px;
+  width: 90%;
   font-size: 1.5rem;
 
   a {

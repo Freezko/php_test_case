@@ -56,10 +56,10 @@ export default {
 		  		this.messages = res.data.data;
 
 		  		this.prevPage =	res.data.prev_page_url ? 
-			  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+			  		res.data.prev_page_url : "";
 
 			  	this.nextPage = res.data.next_page_url ? 
-					res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+					res.data.next_page_url : "";
 	
 	  		}
 	  	});	
@@ -71,10 +71,10 @@ export default {
 	  		this.messages = res.data.data;
 
 	  		this.prevPage =	res.data.prev_page_url ? 
-		  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+		  		res.data.prev_page_url : "";
 
 		  	this.nextPage = res.data.next_page_url ? 
-				res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+				res.data.next_page_url : "";
 
   		});
   	},
@@ -84,10 +84,10 @@ export default {
 	  		this.messages = res.data.data;
 
 	  		this.prevPage =	res.data.prev_page_url ? 
-		  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+		  		res.data.prev_page_url : "";
 
 		  	this.nextPage = res.data.next_page_url ? 
-				res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+				res.data.next_page_url : "";
 
   		});
   	},
