@@ -36,7 +36,7 @@ export default {
   			name: this.name,
   			password: this.password
   		}).then(()=>{
-
+  			
   			this.$router.go({name: 'signin'});
   		})
   	}

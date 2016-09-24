@@ -45,7 +45,7 @@ Route::get('/all-messages', function (Request $request) {
 });
 
 
-Route::get('/write-message', function(Request $request) {
+Route::post('/write-message', function(Request $request) {
 
 	$message = Message::create($request->all());
 	return $message;
