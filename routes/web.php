@@ -11,6 +11,33 @@
 |
 */
 
+Route::get('/create-user', function (Request $request) {
+    return $request->user();
+
+});
+
+
+Route::get('/login-user', function (Request $request) {
+    return $request->user();
+
+});
+
+
+Route::get('/all-messages', function (Request $request) {
+    return $request->user();
+
+});
+
+
+
+Route::get('/get-user-messages', function (Request $request) {
+    return $request->user();
+    
+});
+
+
+
+
 Route::any('{all}', function () {
     return view('index');
 })
