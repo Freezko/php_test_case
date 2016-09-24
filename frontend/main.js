@@ -8,13 +8,28 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 
-Vue.http.interceptors.push((request, next) => {
-
+Vue.http.interceptors.push(() => {
   let token = window.storage.getItem('token');
 
-  request.headers = {
-  	'Authorisation': token
-  }
+  return {
+  	request: (requset) => {
+
+	  request.headers = {
+	  	'Authorisation': token
+	  }
+
+  	},
+  	response: (response) => {
+
+  		console.log(response.data);
+  	}
+
+
+  } 
+
+
+  
+
 
   // continue to next interceptor
   next();
