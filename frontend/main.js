@@ -7,15 +7,19 @@ Vue.use(VueRouter);
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
+
+window.isAuth = window.localStorage.getItem('token');
+window.userId = window.localStorage.getItem('user_id');
+
 Vue.http.interceptors.push((request, next)  => {
 
   let token = window.localStorage.getItem('token');
-  // modify request
   if(token) {
-      request.headers = {
-        'Authorisation': token || ''
-      }
-  }  
+
+    request.headers.set('Authorization', 'Bearer ' + token)
+    
+  }
+
 
   // continue to next interceptor
   next((response) => {
@@ -41,3 +45,5 @@ let router = new VueRouter({
     .start(root, '#application', () => {
         console.log('Роутер активен');
     });
+
+

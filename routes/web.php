@@ -34,7 +34,7 @@ Route::post('/create-user', function (Request $request) {
 
 Route::post('/login-user', 'AuthenticateController@authenticate');
 
-Route::post('/get-user', 'AuthenticateController@getAuthenticatedUser')->middleware('jwt.auth');
+Route::get('/get-user', 'AuthenticateController@getAuthenticatedUser')->middleware('jwt.auth');
 
 
 

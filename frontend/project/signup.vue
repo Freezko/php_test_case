@@ -37,7 +37,7 @@ export default {
   			password: this.password
   		}).then(()=>{
 
-  			alert(1);
+  			this.$router.go({name: 'signin'});
   		})
   	}
   }
