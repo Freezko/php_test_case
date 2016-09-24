@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+use App\User as User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,16 +13,27 @@
 |
 */
 
-Route::get('/create-user', function (Request $request) {
-    return $request->user();
+Route::post('/create-user', function (Request $request) {
+
+	$user = User::create($request->all());
+    return $user;
 
 });
+
+Route::get('/write-message', function(Request $request) {
+
+	$message = Message::create($request->all());
+	return $message;
+
+});
+
 
 
 Route::get('/login-user', function (Request $request) {
     return $request->user();
-
 });
+
+
 
 
 Route::get('/all-messages', function (Request $request) {
@@ -29,10 +42,9 @@ Route::get('/all-messages', function (Request $request) {
 });
 
 
-
 Route::get('/get-user-messages', function (Request $request) {
     return $request->user();
-    
+
 });
 
 
@@ -40,5 +52,4 @@ Route::get('/get-user-messages', function (Request $request) {
 
 Route::any('{all}', function () {
     return view('index');
-})
-->where(['all' => '.*']);
+})->where(['all' => '.*']);
