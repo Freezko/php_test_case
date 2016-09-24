@@ -26,12 +26,8 @@ Route::post('/create-user', function (Request $request) {
 		'email' => $email,
 		'password' => $password
 	]);
-
     return $user;
-
 });
-
-
 
 
 Route::post('/login-user', 'AuthenticateController@authenticate');
@@ -39,9 +35,8 @@ Route::post('/login-user', 'AuthenticateController@authenticate');
 
 
 Route::get('/all-messages', function (Request $request) {
-    
 
-    return Message::all();
+	return Message::all();
 
 });
 
@@ -52,7 +47,7 @@ Route::get('/write-message', function(Request $request) {
 	$message = Message::create($request->all());
 	return $message;
 
-});
+})->middleware('jwt.auth');
 
 
 
@@ -61,7 +56,7 @@ Route::get('/get-user-messages', function (Request $request) {
 
     return User::messages()->all();
 
-});
+})->middleware('jwt.auth');
 
 
 
