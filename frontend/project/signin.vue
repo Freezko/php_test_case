@@ -1,5 +1,6 @@
 <template>
 
+<h1 class="auth-title">Вход</h1>
 <div id="signin" class="form-wrapper">
   <form @submit.prevent="Login">
   	<div class="input-ctl">

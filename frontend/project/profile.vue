@@ -29,8 +29,7 @@ export default {
   ready(){
     if(!window.isAuth){
 
-      this.$router.go({name:'home'});
-      alert('Чтобы увидеть отзывы пользователя необходимо зарегистрироваться!')
+      this.$router.go({name:'signin'});
       return;
 
     }

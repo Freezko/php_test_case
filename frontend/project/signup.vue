@@ -1,5 +1,5 @@
 <template>
-
+<h1 class="auth-title">Регистрация</h1>
 <div id="signup" class="form-wrapper">
   <form @submit.prevent="userCreate">
   	<div class="input-ctl">
