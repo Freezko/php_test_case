@@ -17,7 +17,7 @@
 		 	<a v-link="{name: 'signup'}">Зарегистрируйтесь и сможете оставить отзыв</a>
 		</div>
 		<div class="form-wrapper">
-			<form v-if="isAuth" @submit.prevent="sendMessage">
+			<form v-if="isAuth" @submit.prevent="sendMessage" @keyup="replaceTag">
 				<textarea name="" id="" cols="30" rows="3" v-model="text"></textarea>
 				<button type="submit">Отправить</button>	
 			</form>
@@ -90,6 +90,9 @@ export default {
 				res.data.next_page_url : "";
 
   		});
+  	},
+  	replaceTag(){
+  		this.text = this.text.replace(/<(.*?)>/g,'');
   	},
   	sendMessage(){
 
