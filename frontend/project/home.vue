@@ -19,7 +19,7 @@
     	<h1>Нет записей</h1>
   	</div>
 
-	<div class="send-message">
+	<div class="send-message" class="messages" :class="{'auth-box': isAuth}">
 		<div class="home-message" v-if="!isAuth">
 		 	<a v-link="{name: 'signup'}">Зарегистрируйтесь и сможете оставить отзыв</a>
 		</div>
@@ -133,13 +133,15 @@ export default {
 	}
 }
 .send-message {
-	//background: rgba(grey,0.3);
 	width: 600px; 
 	position: fixed;
 	bottom: 0;
 	left: 50%;
 	transform: translateX(-50%);
 
+	&.auth-box {
+		background: lighten(black,90%);
+	}
 	textarea {
 		//padding: 10px;
 		width: 100%;
@@ -148,9 +150,16 @@ export default {
 	.home-message {
 		margin-top: 100px;
 		margin-bottom: 100px;
-		font-size: 1.4rem;
+		font-size: 1.6rem;
 		text-align: center;
 		cursor: pointer;
+		a {
+			transition: all .2s;
+			&:hover {
+				color: blue;
+				font-size: 1.7rem;
+			}
+		}
 	}
 
 }
@@ -172,7 +181,7 @@ export default {
 	cursor: pointer;
 	&.active-count {
 		background: rgba(grey,.2);
-		color: rgba(grey,0.9);
+		color: rgba(blue,0.5);
 	}
 }
 
