@@ -6,9 +6,7 @@
 	</div>
 
 	<div class="messages">
-		<div v-for="message in messages">
-			{{ message.text }}
-		</div>
+		<message v-for="message in messages" :message="message"></message>
 	</div>
 
 	<div class="send-message">
@@ -25,7 +23,11 @@
 </template>
 
 <script>
+import message from '../base/message';
 export default {
+  components:{
+  	message
+  },
   data () {
     return {
     	text: '',

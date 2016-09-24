@@ -43,7 +43,7 @@ Route::get('/all-messages', function (Request $request) {
 
 	return Message::join('users', 'messages.user_id', '=','users.id')
 	->orderBy('mes_id', 'desc')
-	->paginate(10);
+	->paginate(5);
 
 });
 
