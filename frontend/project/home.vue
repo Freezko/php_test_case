@@ -36,19 +36,23 @@ export default {
     };
   },
   ready(){
-
-  	this.$http.get('all-messages').then((res)=>{
-  		this.messages = res.data.data;
-
-  		this.prevPage =	res.data.prev_page_url ? 
-	  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
-
-	  	this.nextPage = res.data.next_page_url ? 
-			res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
-  	});
+  	this.getMessages();
 
   },
   methods:{
+  	getMessages(){
+
+	  	return this.$http.get('all-messages').then((res)=>{
+	  		this.messages = res.data.data;
+
+	  		this.prevPage =	res.data.prev_page_url ? 
+		  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+
+		  	this.nextPage = res.data.next_page_url ? 
+				res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+	  	});	
+
+  	},
   	paginateNext(){
 
   		this.$http.get(this.nextPage).then((res)=>{
@@ -76,11 +80,12 @@ export default {
   		});
   	},
   	sendMessage(){
+
   		this.$http.post('write-message',{
-  			text: this.text,
-  			user_id: window.userId
-  		}).then(res=>{
-  			this.messages.push(res.data);
+	  		text: this.text,
+	  		user_id: window.userId
+	  	}).then(res=>{
+			this.getMessages();
   		})
   	}
   }
