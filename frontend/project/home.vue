@@ -3,9 +3,16 @@
 	<div class="pagination">
 		<a @click="paginatePrev" v-if="prevPage">назад</a>
 	 	<a @click="paginateNext" v-if="nextPage">вперед</a>
+	 	<span class="paginate-count"
+	 		  @click="paginateCount = 5"  
+	 		  :class="{'active-count': paginateCount === 5}">5</span>
+	 	<span class="paginate-count"
+		 	@click="paginateCount = 10" 
+		 	:class="{'active-count': paginateCount === 10}">10</span>
+
 	</div>
 
-	<div class="messages">
+	<div class="messages" :class="{'ten-count': paginateCount === 10}">
 		<message v-for="message in messages" :message="message" v-if="messages.length"></message>
 	</div>
 	<div class="non-message" v-if="!messages.length">
@@ -39,7 +46,8 @@ export default {
     	nextPage: '',
     	prevPage: '',
     	logOut: '',
-    	isAuth: window.isAuth
+    	isAuth: window.isAuth,
+    	paginateCount: 5
     };
   },
   ready(){
@@ -49,7 +57,7 @@ export default {
   methods:{
   	getMessages(){
 
-	  	return this.$http.get('all-messages').then((res)=>{
+	  	return this.$http.get(`/all-messages/${this.paginateCount}`).then((res)=>{
 
 	  		if(res.data.data){
 
@@ -103,6 +111,11 @@ export default {
 			this.getMessages();
   		})
   	}
+  },
+  watch:{
+  	paginateCount(){
+  		this.getMessages();
+  	}
   }
 };
 </script>
@@ -115,12 +128,13 @@ export default {
 		cursor: pointer;
 	  	padding: 4px 10px 4px 10px;
 		&:hover {
-			background: rgba(grey,0.2);
+			color: rgba(grey,0.5);
 		}
 	}
 }
 .send-message {
-	width: 500px; 
+	//background: rgba(grey,0.3);
+	width: 600px; 
 	position: fixed;
 	bottom: 0;
 	left: 50%;
@@ -144,7 +158,22 @@ export default {
 .messages {
 	max-width: 500px;
 	margin: 0 auto;
+	&.ten-count {
+		margin-bottom: 200px;
+	}
 }
-
+.paginate-count {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	line-height: 40px; 
+	border: 1px solid rgba(grey,0.2);;
+	border-radius: 40px;
+	cursor: pointer;
+	&.active-count {
+		background: rgba(grey,.2);
+		color: rgba(grey,0.9);
+	}
+}
 
 </style>

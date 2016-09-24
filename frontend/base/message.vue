@@ -22,7 +22,8 @@ export default {
 <style lang="sass">
 
 #message {
-	width: 100%;
+	width: 90%;
+	margin: 0 auto;
 	margin-bottom: 2px;
 	box-shadow: 1px 1px 1px grey;
 	padding: 4px;

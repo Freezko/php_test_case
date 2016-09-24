@@ -54,12 +54,12 @@ Route::get('/get-user-messages/{id}', function(Request $request, $id){
 
 
 
-Route::get('/all-messages', function (Request $request) {
+Route::get('/all-messages/{paginate_count}', function (Request $request, $paginate_count) {
 
 
 	return Message::join('users', 'messages.user_id', '=','users.id')
 	->orderBy('mes_id', 'desc')
-	->paginate(5);
+	->paginate($paginate_count);
 
 });
 
