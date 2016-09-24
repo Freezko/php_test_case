@@ -17,19 +17,21 @@ export default {
   },
   data () {
     return {
+      user: '',
+      messages: '',
     	isSelfPage: false
     };
   },
   ready(){
-  	this.$http.get('get-user/'+this.$route.params.user_id)
+  	this.$http.get(`/get-user/${this.$route.params.user_id}`)
   	.then((res)=>{
   		this.user = res.data;
 
   	})
   	.then(()=>{
-  	   this.$http.get('get-user-messages/'+this.$route.params.user_id)
+  	   this.$http.get(`/get-user-messages/${this.$route.params.user_id}`)
   	   .then(res=>{
-  	   		this.messages = res.data; 
+  	   		this.messages = res.data.data; 
   	   })
   	});
   }

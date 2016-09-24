@@ -34,7 +34,23 @@ Route::post('/create-user', function (Request $request) {
 
 Route::post('/login-user', 'AuthenticateController@authenticate');
 
-Route::get('/get-user', 'AuthenticateController@getAuthenticatedUser')->middleware('jwt.auth');
+Route::get('/get-auth-user', 'AuthenticateController@getAuthenticatedUser')->middleware('jwt.auth');
+
+Route::get('/get-user/{id}', function(Request $request, $id){
+
+	return User::find($id);
+
+})->middleware('jwt.auth');
+
+
+Route::get('/get-user-messages/{id}', function(Request $request, $id){
+
+	return Message::where('user_id',$id)
+	->join('users', 'messages.user_id', '=','users.id')
+	->orderBy('mes_id', 'desc')
+	->paginate(5);
+
+});
 
 
 

@@ -33,7 +33,7 @@ export default {
 
   			window.localStorage.setItem('token', response.data.token);
 
-  			this.$http.get('get-user').then((response)=>{
+  			this.$http.get('get-auth-user').then((response)=>{
 
   				window.localStorage.setItem('user_id', response.data.user.id);
           window.location = '/';
