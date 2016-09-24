@@ -11,9 +11,9 @@
 	</div>
 	<div class="input-ctl">
 		<label for="passowrd">Пароль</label>
-		<input id="passowrd" type="password"  v-model="passowrd">
+		<input id="passowrd" type="password"  v-model="password">
 	</div>
-	<button @click="createUser">Отправить</button>
+	<button @click="userCreate">Отправить</button>
 </div>
 
 </template>
@@ -30,15 +30,14 @@ export default {
   },
   methods:{
   	userCreate(){
-  		let { email, name, password } = this;
 
   		this.$http.post('create-user',{
-  			email,
-  			name,
-  			password
+  			email: this.email,
+  			name: this.name,
+  			password: this.password
   		}).then(()=>{
 
-  			consol.log(response);
+  			alert(1);
   		})
   	}
   }
