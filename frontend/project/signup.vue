@@ -1,19 +1,21 @@
 <template>
 
 <div id="signup" class="form-wrapper">
-	<div class="input-ctl">
-		<label for="name">Имя</label>
-		<input type="text" id="name" v-model="name">
-	</div>
-	<div class="input-ctl">
-		<label for="email">Email</label>
-		<input type="email" id="email" v-model="email">
-	</div>
-	<div class="input-ctl">
-		<label for="passowrd">Пароль</label>
-		<input id="passowrd" type="password"  v-model="password">
-	</div>
-	<button @click="userCreate">Отправить</button>
+  <form @submit.prevent="userCreate">
+  	<div class="input-ctl">
+  		<label for="name">Имя</label>
+  		<input type="text" id="name" v-model="name">
+  	</div>
+  	<div class="input-ctl">
+  		<label for="email">Email</label>
+  		<input type="email" id="email" v-model="email">
+  	</div>
+  	<div class="input-ctl">
+  		<label for="passowrd">Пароль</label>
+  		<input id="passowrd" type="password"  v-model="password">
+  	</div>
+  	<button type="submit">Отправить</button>
+  </form>
 </div>
 
 </template>
@@ -38,7 +40,9 @@ export default {
   		}).then(()=>{
   			
   			this.$router.go({name: 'signin'});
-  		})
+  		},err=>{
+        alert('Пользователь с таким email существует');
+      })
   	}
   }
 };
@@ -48,7 +52,7 @@ export default {
 @import '../base/mixin';
 
 #signup { 
-  background: red;
+  background: rgba(red,0.5);
   @include center-block();
 }
 

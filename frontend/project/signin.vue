@@ -1,15 +1,17 @@
 <template>
 
-<div id="signup" class="form-wrapper">
-	<div class="input-ctl">
-		<label for="email">Email</label>
-		<input type="email" id="email" v-model="email">
-	</div>
-	<div class="input-ctl">
-		<label for="passowrd">Пароль</label>
-		<input id="passowrd" type="password"  v-model="password">
-	</div>
-	<button @click="userCreate">Отправить</button>
+<div id="signin" class="form-wrapper">
+  <form @submit.prevent="Login">
+  	<div class="input-ctl">
+  		<label for="email">Email</label>
+  		<input type="email" id="email" v-model="email" required>
+  	</div>
+  	<div class="input-ctl">
+  		<label for="passowrd">Пароль</label>
+  		<input id="passowrd" type="password"  v-model="password" required>
+  	</div>
+  	<button type="submit">Отправить</button>
+  </form>
 </div>
 
 </template>
@@ -24,12 +26,13 @@ export default {
     };
   },
   methods:{
-  	userCreate(){
+  	Login(){
 
   		this.$http.post('login-user',{
   			email: this.email,
   			password: this.password
-  		}).then((response)=>{
+  		})
+      .then((response)=>{
 
   			window.localStorage.setItem('token', response.data.token);
 
@@ -39,7 +42,9 @@ export default {
           window.location = '/';
 
   			})
-  		})
+  		},err=>{
+        alert('Неверный пароль или email!')
+      })
   	}
   }
 };
@@ -48,8 +53,8 @@ export default {
 <style lang="sass">
 @import '../base/mixin';
 
-#signup { 
-  background: red;
+#signin { 
+  background: rgba(blue,0.5);
   @include center-block();
 }
 

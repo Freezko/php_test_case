@@ -16,11 +16,12 @@
 		<div class="home-message" v-if="!isAuth">
 		 	<a v-link="{name: 'signup'}">Зарегистрируйтесь и сможете оставить отзыв</a>
 		</div>
-		<form v-if="isAuth" @submit.prevent>
-			<textarea name="" id="" cols="30" rows="5" v-model="text"></textarea>
-			<button @click="sendMessage">Отправить</button>
-			
-		</form>
+		<div class="form-wrapper">
+			<form v-if="isAuth" @submit.prevent="sendMessage">
+				<textarea name="" id="" cols="30" rows="3" v-model="text"></textarea>
+				<button type="submit">Отправить</button>	
+			</form>
+		</div>
 	</div>
 
 </template>
