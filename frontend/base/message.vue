@@ -1,7 +1,9 @@
 <template>
 <div id="message">
 	<div class="message-text">{{ message.text}}</div>
-	<div class="message-username">{{ message.name}}</div>
+	<a class="message-username"
+	   v-link="{name: 'profile', params: {user_id: message.user_id}}">
+	{{ message.name}}</a>
 </div>
 
 </template>
@@ -34,6 +36,7 @@ export default {
 		font-size: 1.5rem;
 		float: right;
 		background: rgba(grey, .2);
+		padding: 4px;
 	}
 }
 

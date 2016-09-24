@@ -1,7 +1,7 @@
 <template>
 	<div class="navigation">
 		<a v-link="{name: 'home'}">Отзывы</a>
-		<a v-link="{name: 'profile'}" v-if="isAuth">Профиль</a>
+		<a v-link="{name: 'profile', params: {user_id: user_id}}" v-if="isAuth">Профиль</a>
 		<a href="#" v-if="isAuth" @click="logOut">Выход</a>
 		<a v-link="{name: 'signup'}" v-if="!isAuth">Регистрация</a>
 		<a v-link="{name: 'signin'}" v-if="!isAuth">Вход</a>
@@ -18,7 +18,8 @@ export default {
   replace: false,
   data() {
   	return {
-  	  isAuth: window.isAuth
+  	  isAuth: window.isAuth,
+      user_id: window.user_id
   	}
   },
   methods: {

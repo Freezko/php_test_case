@@ -3,7 +3,7 @@ export default {
 		name: 'home',
 		component: require('./project/home')
 	},
-	'/profile': {
+	'/profile/:user_id': {
 		name: 'profile',
 		component: require('./project/profile')
 	},
