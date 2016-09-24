@@ -89,7 +89,7 @@ export default {
 
   		this.$http.post('write-message',{
 	  		text: this.text,
-	  		user_id: window.userId
+	  		user_id: window.localStorage.getItem('user_id')
 	  	}).then(res=>{
 			this.getMessages();
   		})
