@@ -12,11 +12,14 @@
 		</div>
 	</div>
 
-	<div class="home-message">
+	<div class="home-message" v-if="!isAuth">
 	 	<a v-link="{name: 'signup'}">Зарегистрируйтесь и сможете оставить отзыв</a>
 	</div>
-	<textarea name="" id="" cols="30" rows="5" v-model="text"></textarea>
-	<button @click="sendMessage">Отправить</button>
+	<form v-if="isAuth" @submit.prevent>
+		<textarea name="" id="" cols="30" rows="5" v-model="text"></textarea>
+		<button @click="sendMessage">Отправить</button>
+		
+	</form>
 	
 </div>
 
@@ -29,7 +32,8 @@ export default {
   data () {
     return {
     	text: '',
-    	messages: []
+    	messages: [],
+    	isAuth: window.isAuth
     };
   },
   ready(){
