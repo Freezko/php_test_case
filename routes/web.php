@@ -26,11 +26,15 @@ Route::post('/create-user', function (Request $request) {
 		'email' => $email,
 		'password' => $password
 	]);
+
     return $user;
+
 });
 
 
 Route::post('/login-user', 'AuthenticateController@authenticate');
+
+Route::post('/get-user', 'AuthenticateController@getAuthenticatedUser')->middleware('jwt.auth');
 
 
 
@@ -39,7 +43,6 @@ Route::get('/all-messages', function (Request $request) {
 	return Message::all();
 
 });
-
 
 
 Route::get('/write-message', function(Request $request) {
