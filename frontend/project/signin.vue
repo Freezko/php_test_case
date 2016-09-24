@@ -32,10 +32,12 @@ export default {
   		}).then((response)=>{
 
   			window.localStorage.setItem('token', response.data.token);
+
   			this.$http.get('get-user').then((response)=>{
+
   				window.localStorage.setItem('user_id', response.data.user.id);
-  				this.$router.go({name: 'home'});
-  				console.log(window.localStorage.getItem('user_id'));
+          window.location = '/';
+
   			})
   		})
   	}

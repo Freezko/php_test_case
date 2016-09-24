@@ -1,8 +1,8 @@
 <template>
 	<div class="navigation">
-		<a v-link="{name: 'home'}" v-if="isAuth">Отзывы</a>
+		<a v-link="{name: 'home'}">Отзывы</a>
 		<a v-link="{name: 'profile'}" v-if="isAuth">Профиль</a>
-		<a href="#" v-if="isAuth">Выход</a>
+		<a href="#" v-if="isAuth" @click="logOut">Выход</a>
 		<a v-link="{name: 'signup'}" v-if="!isAuth">Регистрация</a>
 		<a v-link="{name: 'signin'}" v-if="!isAuth">Вход</a>
 	</div>
@@ -16,10 +16,17 @@
 <script>
 export default {
   replace: false,
-  data () {
-    return {
-    	isAuth: window.isAuth
-    };
+  data() {
+  	return {
+  	  isAuth: window.isAuth
+  	}
+  },
+  methods: {
+  	logOut(){
+  		window.localStorage.removeItem('token');
+  		window.localStorage.removeItem('user_id');
+  		window.location = '/';
+  	}
   }
 };
 </script>

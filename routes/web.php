@@ -40,7 +40,11 @@ Route::get('/get-user', 'AuthenticateController@getAuthenticatedUser')->middlewa
 
 Route::get('/all-messages', function (Request $request) {
 
-	return Message::orderBy('created_at', 'desc')->paginate(10);
+	return Message::orderBy('created_at', 'desc')
+	//crossJoin('users')
+	//->join('users', 'messages.user_id', '=','users.id')
+
+	->paginate(10);
 
 });
 

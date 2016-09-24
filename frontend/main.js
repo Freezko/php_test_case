@@ -8,8 +8,9 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 
-window.isAuth = window.localStorage.getItem('token') && window.localStorage.getItem('user_id');
-window.userId = window.localStorage.getItem('user_id');
+window.isAuth = window.localStorage.getItem('token') && window.localStorage.getItem('user_id')
+window.user_id = window.localStorage.getItem('user_id');
+
 
 Vue.http.interceptors.push((request, next)  => {
 
@@ -24,7 +25,7 @@ Vue.http.interceptors.push((request, next)  => {
   // continue to next interceptor
   next((response) => {
 
-    console.log(response.data);
+    console.log(JSON.parse(JSON.stringify(response.data)));
 
   });
 });
@@ -41,9 +42,10 @@ let router = new VueRouter({
     history: true
 })
 
+
 .map(routerMap)
     .start(root, '#application', () => {
         console.log('Роутер активен');
-    });
+    })
 
 

@@ -30,10 +30,10 @@ export default {
     return {
     	text: '',
     	messages: [],
-    	isAuth: window.isAuth,
     	nextPage: '',
     	prevPage: '',
-    	logOut: ''
+    	logOut: '',
+    	isAuth: window.isAuth
     };
   },
   ready(){
@@ -44,13 +44,18 @@ export default {
   	getMessages(){
 
 	  	return this.$http.get('all-messages').then((res)=>{
-	  		this.messages = res.data.data;
 
-	  		this.prevPage =	res.data.prev_page_url ? 
-		  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+	  		if(res.data.data){
 
-		  	this.nextPage = res.data.next_page_url ? 
-				res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+		  		this.messages = res.data.data;
+
+		  		this.prevPage =	res.data.prev_page_url ? 
+			  		res.data.prev_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+
+			  	this.nextPage = res.data.next_page_url ? 
+					res.data.next_page_url.replace(/http:\/\/php-case.local\//, '') : "";
+	
+	  		}
 	  	});	
 
   	},
@@ -88,12 +93,6 @@ export default {
 	  	}).then(res=>{
 			this.getMessages();
   		})
-  	},
-  	logOut(){
-
-  		window.localStorage.removeItem('token');
-  		window.localStorage.removeItem('user_id');
-  		
   	}
   }
 };
