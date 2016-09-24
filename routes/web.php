@@ -40,7 +40,7 @@ Route::get('/get-user', 'AuthenticateController@getAuthenticatedUser')->middlewa
 
 Route::get('/all-messages', function (Request $request) {
 
-	return Message::all();
+	return Message::paginate(10);
 
 });
 
