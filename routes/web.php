@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use App\User as User;
+use App\Message as Message;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,12 +21,6 @@ Route::post('/create-user', function (Request $request) {
 
 });
 
-Route::get('/write-message', function(Request $request) {
-
-	$message = Message::create($request->all());
-	return $message;
-
-});
 
 
 
@@ -35,15 +30,28 @@ Route::get('/login-user', function (Request $request) {
 
 
 
-
 Route::get('/all-messages', function (Request $request) {
-    return $request->user();
+    
+
+    return Message::all();
 
 });
 
 
+
+Route::get('/write-message', function(Request $request) {
+
+	$message = Message::create($request->all());
+	return $message;
+
+});
+
+
+
+
 Route::get('/get-user-messages', function (Request $request) {
-    return $request->user();
+
+    return User::messages()->all();
 
 });
 
