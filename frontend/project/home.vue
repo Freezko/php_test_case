@@ -6,8 +6,11 @@
 	</div>
 
 	<div class="messages">
-		<message v-for="message in messages" :message="message"></message>
+		<message v-for="message in messages" :message="message" v-if="messages.length"></message>
 	</div>
+	<div class="non-message" v-if="!messages.length">
+    	<h1>Нет записей</h1>
+  	</div>
 
 	<div class="send-message">
 		<div class="home-message" v-if="!isAuth">

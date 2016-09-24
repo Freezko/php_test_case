@@ -48,7 +48,7 @@ Route::get('/get-user-messages/{id}', function(Request $request, $id){
 	return Message::where('user_id',$id)
 	->join('users', 'messages.user_id', '=','users.id')
 	->orderBy('mes_id', 'desc')
-	->paginate(5);
+	->get();
 
 });
 

@@ -2,9 +2,13 @@
 
 <div id="profile">
 	<h1>Отзывы {{ user.name }}</h1>	
-	<div class="messages">
+	<div class="messages" v-if="messages" v-if="message.length">
 		<message v-for="message in messages" :message="message"></message>
 	</div>
+  <div class="non-message" v-if="!messages.length">
+    <h1>Нет записей</h1>
+  </div>
+
 </div>
 
 </template>
@@ -31,7 +35,9 @@ export default {
   	.then(()=>{
   	   this.$http.get(`/get-user-messages/${this.$route.params.user_id}`)
   	   .then(res=>{
-  	   		this.messages = res.data.data; 
+
+  	   		this.messages = res.data; 
+
   	   })
   	});
   }
