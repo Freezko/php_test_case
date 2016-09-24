@@ -8,7 +8,7 @@ import VueResource from 'vue-resource';
 Vue.use(VueResource);
 
 
-window.isAuth = window.localStorage.getItem('token');
+window.isAuth = window.localStorage.getItem('token') && window.localStorage.getItem('user_id');
 window.userId = window.localStorage.getItem('user_id');
 
 Vue.http.interceptors.push((request, next)  => {

@@ -32,7 +32,8 @@ export default {
     	messages: [],
     	isAuth: window.isAuth,
     	nextPage: '',
-    	prevPage: ''
+    	prevPage: '',
+    	logOut: ''
     };
   },
   ready(){
@@ -87,6 +88,12 @@ export default {
 	  	}).then(res=>{
 			this.getMessages();
   		})
+  	},
+  	logOut(){
+
+  		window.localStorage.removeItem('token');
+  		window.localStorage.removeItem('user_id');
+  		
   	}
   }
 };
@@ -96,17 +103,13 @@ export default {
 .pagination {
 	text-align: center;
 	font-size: 1.4rem;
-
-
 	a {
 		cursor: pointer;
 	  	padding: 4px 10px 4px 10px;
 		&:hover {
 			background: rgba(grey,0.2);
 		}
-
 	}
-
 }
 .send-message {
 	width: 500px; 
@@ -134,8 +137,6 @@ export default {
 	max-width: 500px;
 	margin: 0 auto;
 }
-
-
 
 
 </style>
