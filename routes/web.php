@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use App\User as User;
 use App\Message as Message;
+use Illuminate\Support\Facades\Hash;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +17,16 @@ use App\Message as Message;
 
 Route::post('/create-user', function (Request $request) {
 
-	$user = User::create($request->all());
+	$email = $request->input('email');
+	$name = $request->input('name');
+	$password = Hash::make($request->input('password'));
+
+	$user = User::create([
+		'name' => $name,
+		'email' => $email,
+		'password' => $password
+	]);
+
     return $user;
 
 });
@@ -24,9 +34,7 @@ Route::post('/create-user', function (Request $request) {
 
 
 
-Route::get('/login-user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/login-user', 'AuthenticateController@authenticate');
 
 
 
