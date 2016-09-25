@@ -3,12 +3,14 @@
 	<div class="pagination">
 		<a @click="paginatePrev" v-if="prevPage">назад</a>
 	 	<a @click="paginateNext" v-if="nextPage">вперед</a>
-	 	<span class="paginate-count"
-	 		  @click="paginateCount = 5"  
-	 		  :class="{'active-count': paginateCount === 5}">5</span>
-	 	<span class="paginate-count"
-		 	@click="paginateCount = 10" 
-		 	:class="{'active-count': paginateCount === 10}">10</span>
+	 	<template v-if="messages.length">
+		 	<span class="paginate-count"
+		 		  @click="paginateCount = 5"  
+		 		  :class="{'active-count': paginateCount === 5}">5</span>
+		 	<span class="paginate-count"
+			 	@click="paginateCount = 10" 
+			 	:class="{'active-count': paginateCount === 10}">10</span>
+		</template>
 
 	</div>
 
@@ -25,7 +27,7 @@
 		</div>
 		<div class="form-wrapper">
 			<form v-if="isAuth" @submit.prevent="sendMessage" @keyup="replaceTag">
-				<textarea name="" id="" cols="30" rows="3" v-model="text"></textarea>
+				<textarea name="" id="" cols="30" rows="3" v-model="text" required></textarea>
 				<button type="submit">Отправить</button>	
 			</form>
 		</div>
@@ -109,6 +111,7 @@ export default {
 	  		user_id: window.localStorage.getItem('user_id')
 	  	}).then(res=>{
 			this.getMessages();
+			this.text = '';
   		})
   	}
   },

@@ -61,7 +61,7 @@ Route::get('/all-messages/{paginate_count}', function (Request $request, $pagina
 	->orderBy('mes_id', 'desc')
 	->paginate($paginate_count);
 
-});
+})->middleware('cors');
 
 
 Route::post('/write-message', function(Request $request) {
