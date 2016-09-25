@@ -1,0 +1,191 @@
+<template>
+
+	<div class="pagination">
+		<a @click="paginatePrev" v-if="prevPage">назад</a>
+	 	<a @click="paginateNext" v-if="nextPage">вперед</a>
+	 	<template v-if="messages.length">
+		 	<span class="paginate-count"
+		 		  @click="paginateCount = 5"  
+		 		  :class="{'active-count': paginateCount === 5}">5</span>
+		 	<span class="paginate-count"
+			 	@click="paginateCount = 10" 
+			 	:class="{'active-count': paginateCount === 10}">10</span>
+		</template>
+
+	</div>
+
+	<div class="messages" :class="{'ten-count': paginateCount === 10}">
+		<message v-for="message in messages" :message="message" v-if="messages.length"></message>
+	</div>
+	<div class="non-message" v-if="!messages.length">
+    	<h1>Нет записей</h1>
+  	</div>
+
+	<div class="send-message" class="messages" :class="{'auth-box': isAuth}">
+		<div class="home-message" v-if="!isAuth">
+		 	<a v-link="{name: 'signup'}">Зарегистрируйтесь и сможете оставить отзыв</a>
+		</div>
+		<div class="form-wrapper">
+			<form v-if="isAuth" @submit.prevent="sendMessage" @keyup="replaceTag">
+				<textarea name="" id="" cols="30" rows="3" v-model="text" required></textarea>
+				<button type="submit">Отправить</button>	
+			</form>
+		</div>
+	</div>
+
+</template>
+
+<script>
+import message from '../base/message';
+export default {
+  components:{
+  	message
+  },
+  data () {
+    return {
+    	text: '',
+    	messages: [],
+    	nextPage: '',
+    	prevPage: '',
+    	logOut: '',
+    	isAuth: window.isAuth,
+    	paginateCount: 5
+    };
+  },
+  ready(){
+  	this.getMessages();
+
+  },
+  methods:{
+  	getMessages(){
+
+	  	return this.$http.get(`/all-messages/${this.paginateCount}`).then((res)=>{
+
+	  		if(res.data.data){
+
+		  		this.messages = res.data.data;
+
+		  		this.prevPage =	res.data.prev_page_url ? 
+			  		res.data.prev_page_url : "";
+
+			  	this.nextPage = res.data.next_page_url ? 
+					res.data.next_page_url : "";
+	
+	  		}
+	  	});	
+
+  	},
+  	paginateNext(){
+
+  		this.$http.get(this.nextPage).then((res)=>{
+	  		this.messages = res.data.data;
+
+	  		this.prevPage =	res.data.prev_page_url ? 
+		  		res.data.prev_page_url : "";
+
+		  	this.nextPage = res.data.next_page_url ? 
+				res.data.next_page_url : "";
+
+  		});
+  	},
+  	paginatePrev(){
+
+  		this.$http.get(this.prevPage).then((res)=>{
+	  		this.messages = res.data.data;
+
+	  		this.prevPage =	res.data.prev_page_url ? 
+		  		res.data.prev_page_url : "";
+
+		  	this.nextPage = res.data.next_page_url ? 
+				res.data.next_page_url : "";
+
+  		});
+  	},
+  	replaceTag(){
+  		this.text = this.text.replace(/<(.*?)>/g,'');
+  	},
+  	sendMessage(){
+
+  		this.$http.post('write-message',{
+	  		text: this.text,
+	  		user_id: window.localStorage.getItem('user_id')
+	  	}).then(res=>{
+			this.getMessages();
+			this.text = '';
+  		})
+  	}
+  },
+  watch:{
+  	paginateCount(){
+  		this.getMessages();
+  	}
+  }
+};
+</script>
+
+<style lang="sass">
+.pagination {
+	text-align: center;
+	font-size: 1.4rem;
+	a {
+		cursor: pointer;
+	  	padding: 4px 10px 4px 10px;
+		&:hover {
+			color: rgba(grey,0.5);
+		}
+	}
+}
+.send-message {
+	width: 600px; 
+	position: fixed;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+
+	&.auth-box {
+		background: lighten(black,90%);
+	}
+	textarea {
+		//padding: 10px;
+		width: 100%;
+		font-size: 2rem;
+	}
+	.home-message {
+		margin-top: 100px;
+		margin-bottom: 100px;
+		font-size: 1.6rem;
+		text-align: center;
+		cursor: pointer;
+		a {
+			transition: all .2s;
+			&:hover {
+				color: blue;
+				font-size: 1.7rem;
+			}
+		}
+	}
+
+}
+
+.messages {
+	max-width: 500px;
+	margin: 0 auto;
+	&.ten-count {
+		margin-bottom: 200px;
+	}
+}
+.paginate-count {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	line-height: 40px; 
+	border: 1px solid rgba(grey,0.2);;
+	border-radius: 40px;
+	cursor: pointer;
+	&.active-count {
+		background: rgba(grey,.2);
+		color: rgba(blue,0.5);
+	}
+}
+
+</style>
